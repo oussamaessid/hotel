@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bacground4"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.welcome.WelcomeFragment">
+
+    <Button
+        android:id="@+id/btn_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="English"
+        android:textColor="@color/colorWhite"
+        app:backgroundTint="@color/colorAquamarineBlue_50"
+        app:layout_constraintBottom_toTopOf="@+id/btn_arabe" />
+
+    <Button
+        android:id="@+id/btn_arabe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="Arabe"
+        android:textColor="@color/colorWhite"
+        app:backgroundTint="@color/colorAstronautBlue_50"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
