@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.SplashActivity">
+    tools:context=".presentation.misc.SplashActivity">
 
 
     <ImageView
@@ -30,7 +30,6 @@
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pacifico"
             android:text="HotelWallet"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"
@@ -46,8 +45,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="32sp"
             android:layout_below="@+id/textView19"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/pacifico"/>
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
 

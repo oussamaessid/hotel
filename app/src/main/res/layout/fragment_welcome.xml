@@ -1,81 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onBoardingMotion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/on_boarding"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.welcome.WelcomeFragment"
-    tools:ignore="MotionLayoutInvalidSceneFileReference">
+    app:layoutDescription="@xml/fragment_welcome_on_boarding_scene"
+    tools:context=".presentation.welcome.WelcomeFragment">
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabBackground="@drawable/indicator_selector"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/btn_arabe"
-        app:layout_constraintBottom_toTopOf="@+id/tab_layout"
-        tools:ignore="MissingConstraints" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/round_corner"
-        android:text="@string/txt_skip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Back"/>
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/round_corner"
-        android:text="@string/txt_next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Next" />
-
-    <Button
-        android:id="@+id/btn_english"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="English"
-        android:textColor="@color/colorWhite"
-        app:backgroundTint="@color/colorAquamarineBlue_50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_arabe"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSkip"
+        app:tabBackground="@drawable/selector_tab_view_pager"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        style="@style/HotelWalletButtonMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Arabe"
+        android:text="@string/txt_btn_next"
         android:textColor="@color/colorWhite"
-        app:backgroundTint="@color/colorAstronautBlue_50"
-        app:layout_constraintTop_toBottomOf="@+id/btn_english"
+        app:backgroundTint="@color/colorCerulean"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSkip"
+        app:layout_constraintEnd_toStartOf="@+id/btnSkip"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnSkip" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSkip"
+        style="@style/HotelWalletButtonMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/txt_btn_skip"
+        android:textColor="@color/colorWhite"
+        app:backgroundTint="@color/colorDoveGray"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.motion.widget.MotionLayout >
+</androidx.constraintlayout.motion.widget.MotionLayout>

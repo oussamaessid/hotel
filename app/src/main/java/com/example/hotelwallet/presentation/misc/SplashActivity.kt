@@ -1,11 +1,10 @@
-package com.example.hotelwallet.presentation
+package com.example.hotelwallet.presentation.misc
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.hotelwallet.R
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import java.util.*
 import kotlin.concurrent.schedule
 
