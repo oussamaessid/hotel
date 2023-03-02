@@ -14,17 +14,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
+class WelcomeFragment : Fragment(R.layout.fragment_welcome),View.OnClickListener {
 
     private var _binding: FragmentWelcomeBinding? = null
     private val binding: FragmentWelcomeBinding get() = requireNotNull(_binding)
     private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private var viewPagerList = mutableListOf<LayoutUiModel>()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
 
         setViewPage()
@@ -33,34 +32,32 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
 
-        binding.btnEnglish.setOnClickListener {
+//        binding.btnEnglish.setOnClickListener {
+//            if(onBoardingFinished()){
+//                findNavController().navigate(R.id.action_welcomeFragment_to_viewPagerFragment)
+//            }else{
+//                findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
+//            }
+//        }
 
-            binding.btnEnglish.visibility = View.INVISIBLE
-            binding.btnArabe.visibility = View.INVISIBLE
-
-            binding.btnSkip.visibility = View.VISIBLE
-            binding.btnNext.visibility = View.VISIBLE
-            binding.viewPager.visibility = View.VISIBLE
-            binding.tabLayout.visibility = View.VISIBLE
-
-            binding.btnNext.setOnClickListener {
-                if (binding.viewPager.currentItem == 2)
-                    findNavController().navigate(R.id.action_welcomeFragment_to_homeFragment)
-                else {
-                    positionVerify(binding.viewPager.currentItem)
-                    binding.viewPager.currentItem++
-                }
-            }
-
-            binding.btnSkip.setOnClickListener {
+        binding.btnNext.setOnClickListener{
+            if (binding.viewPager.currentItem == 2)
                 findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
+            else {
+                positionVerify(binding.viewPager.currentItem)
+                binding.viewPager.currentItem++
             }
         }
+
+        binding.btnSkip.setOnClickListener {
+            findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
+        }
+
         return binding.root
     }
 
     private fun positionVerify(position: Int) {
-        when (position) {
+        when(position) {
             0 -> {
                 binding.btnSkip.visibility = View.VISIBLE
                 binding.btnNext.text = getString(R.string.txt_next)
@@ -69,46 +66,55 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
                 binding.btnSkip.visibility = View.VISIBLE
                 binding.btnNext.text = getString(R.string.txt_go)
             }
-            else -> {
+            else ->{
                 binding.btnSkip.visibility = View.VISIBLE
                 binding.btnNext.text = getString(R.string.txt_next)
             }
         }
     }
 
-    fun setViewPage() {
+    fun setViewPage(){
         viewPagerAdapter = ViewPagerAdapter()
         val data = layoutList()
         viewPagerAdapter.setViewPageAdapter(data)
     }
 
 
-    private fun layoutList(): ArrayList<LayoutUiModel> {
-        val list = ArrayList<LayoutUiModel>()
-        list.add(
-            LayoutUiModel(
-                R.drawable.bacground4,
-                "Work at Home",
-                "Work at home to more comfort. Make a great projects with this app"
-            )
-        )
-        list.add(
-            LayoutUiModel(
-                R.drawable.bacground4,
-                "Analyse Your Project",
-                "Smart details for analysis. Do more with this app"
-            )
-        )
-        list.add(
-            LayoutUiModel(
-                R.drawable.bacground4,
-                "Achieve Your Goals",
-                "Achieve your goals more easily. This app will help with that"
-            )
-        )
-        return list
-    }
 
+    private fun layoutList(): ArrayList<LayoutUiModel> {
+         val list = ArrayList<LayoutUiModel>()
+         list.add(
+             LayoutUiModel(
+                 R.drawable.bacground4,
+                 "Work at Home",
+                 "Work at home to more comfort. Make a great projects with this app"
+             ))
+         list.add(
+             LayoutUiModel(
+                 R.drawable.bacground4,
+                "Analyse Your Project",
+                 "Smart details for analysis. Do more with this app"
+             ))
+         list.add(
+             LayoutUiModel(
+                 R.drawable.bacground4,
+                 "Achieve Your Goals",
+                 "Achieve your goals more easily. This app will help with that"
+             )
+         )
+        return list
+     }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.btn_next -> {
+                binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+            }
+            R.id.btn_skip -> {
+                findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
+            }
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

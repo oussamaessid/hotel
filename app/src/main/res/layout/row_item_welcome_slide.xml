@@ -6,25 +6,28 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/img_slide"
+        android:id="@+id/imgSlide"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/txt_title_slide"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="12dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/txtTitleSlide"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/bacground4" />
 
     <TextView
-        android:id="@+id/txt_title_slide"
+        android:id="@+id/txtTitleSlide"
+        style="@style/TextViewStyle.Bold.20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/txt_des_slide"
-         />
+        app:layout_constraintBottom_toTopOf="@+id/txtDesSlide" />
 
     <TextView
-        android:id="@+id/txt_des_slide"
+        android:id="@+id/txtDesSlide"
+        style="@style/TextViewStyle.Medium.16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"

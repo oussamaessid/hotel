@@ -79,9 +79,8 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    /** Coil **/
+    implementation 'io.coil-kt:coil:2.1.0'
 
     //gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
@@ -90,6 +89,9 @@ dependencies {
     implementation('me.dm7.barcodescanner:zxing:1.9.8') {
         exclude group: 'com.android.support'
     }
+
+    /** Lottie **/
+    implementation "com.airbnb.android:lottie:5.0.3"
 
     implementation('com.journeyapps:zxing-android-embedded:4.3.0')
     implementation 'com.google.zxing:core:3.3.0'

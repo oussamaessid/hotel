@@ -1,4 +1,4 @@
-package com.example.food.utility
+package com.example.hotelwallet.utility
 
 sealed class Resource<out R> {
     data class Success<out T>(val data: T) : Resource<T>()
