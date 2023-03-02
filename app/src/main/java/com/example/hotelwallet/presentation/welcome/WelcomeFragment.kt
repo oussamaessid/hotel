@@ -1,123 +1,88 @@
 package com.example.hotelwallet.presentation.welcome
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.ViewPager
 import com.example.hotelwallet.R
 import com.example.hotelwallet.databinding.FragmentWelcomeBinding
-import com.example.hotelwallet.domain.model.LayoutUiModel
-import com.google.android.material.tabs.TabLayoutMediator
+import com.example.hotelwallet.domain.model.WelcomeSlide
+import com.example.hotelwallet.presentation.misc.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WelcomeFragment : Fragment(R.layout.fragment_welcome),View.OnClickListener {
+class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
+    FragmentWelcomeBinding::inflate
+), View.OnClickListener {
 
-    private var _binding: FragmentWelcomeBinding? = null
-    private val binding: FragmentWelcomeBinding get() = requireNotNull(_binding)
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
-    private var viewPagerList = mutableListOf<LayoutUiModel>()
+    private lateinit var slideAdapter: WelcomeOnBoardingAdapter
+    private var slideList = mutableListOf<WelcomeSlide>()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        setSlideList()
 
-        setViewPage()
-        binding.viewPager.adapter = viewPagerAdapter
-
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
-
-//        binding.btnEnglish.setOnClickListener {
-//            if(onBoardingFinished()){
-//                findNavController().navigate(R.id.action_welcomeFragment_to_viewPagerFragment)
-//            }else{
-//                findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
-//            }
-//        }
-
-        binding.btnNext.setOnClickListener{
-            if (binding.viewPager.currentItem == 2)
-                findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
-            else {
-                positionVerify(binding.viewPager.currentItem)
-                binding.viewPager.currentItem++
-            }
-        }
-
-        binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
-        }
-
-        return binding.root
+        binding.btnNext.setOnClickListener(this)
+        binding.btnSkip.setOnClickListener(this)
     }
 
-    private fun positionVerify(position: Int) {
-        when(position) {
-            0 -> {
-                binding.btnSkip.visibility = View.VISIBLE
-                binding.btnNext.text = getString(R.string.txt_next)
-            }
-            2 -> {
-                binding.btnSkip.visibility = View.VISIBLE
-                binding.btnNext.text = getString(R.string.txt_go)
-            }
-            else ->{
-                binding.btnSkip.visibility = View.VISIBLE
-                binding.btnNext.text = getString(R.string.txt_next)
-            }
-        }
-    }
-
-    fun setViewPage(){
-        viewPagerAdapter = ViewPagerAdapter()
-        val data = layoutList()
-        viewPagerAdapter.setViewPageAdapter(data)
-    }
-
-
-
-    private fun layoutList(): ArrayList<LayoutUiModel> {
-         val list = ArrayList<LayoutUiModel>()
-         list.add(
-             LayoutUiModel(
-                 R.drawable.bacground4,
-                 "Work at Home",
-                 "Work at home to more comfort. Make a great projects with this app"
-             ))
-         list.add(
-             LayoutUiModel(
-                 R.drawable.bacground4,
+    private fun setSlideList() {
+        slideList.add(
+            WelcomeSlide(
+                R.drawable.bacground4,
+                "Work at Home",
+                "Work at home to more comfort. Make a great projects with this app"
+            )
+        )
+        slideList.add(
+            WelcomeSlide(
+                R.drawable.bacground4,
                 "Analyse Your Project",
-                 "Smart details for analysis. Do more with this app"
-             ))
-         list.add(
-             LayoutUiModel(
-                 R.drawable.bacground4,
-                 "Achieve Your Goals",
-                 "Achieve your goals more easily. This app will help with that"
-             )
-         )
-        return list
-     }
+                "Smart details for analysis. Do more with this app"
+            )
+        )
+        slideList.add(
+            WelcomeSlide(
+                R.drawable.bacground4,
+                "Achieve Your Goals",
+                "Achieve your goals more easily. This app will help with that"
+            )
+        )
+
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {}
+
+            override fun onPageSelected(position: Int) {
+                if (position == slideList.size - 1) {
+                    binding.onBoardingMotion.transitionToEnd()
+                } else {
+                    binding.onBoardingMotion.transitionToStart()
+                }
+            }
+
+        })
+        slideAdapter = WelcomeOnBoardingAdapter(slideList)
+        binding.viewPager.adapter = slideAdapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+    }
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.btn_next -> {
+            R.id.btnNext -> {
                 binding.viewPager.currentItem = binding.viewPager.currentItem + 1
             }
-            R.id.btn_skip -> {
+            R.id.btnSkip -> {
                 findNavController().navigate(R.id.action_welcomeFragment_to_scannerFragment)
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

@@ -41,4 +41,6 @@
     <color name="colorCrimson">#ED1B24</color>
     <color name="colorJaffa">#FFF68A4C</color>
     <color name="transparent">#00ffffff</color>
+    <color name="mine_shaft">#232323</color>
+
 </resources>
