@@ -8,9 +8,9 @@
         android:icon="@drawable/ic_home" />
 
     <item
-        android:id="@+id/miSearch"
-        android:title="@string/txt_search"
-        android:icon="@drawable/ic_search" />
+        android:id="@+id/miCategory"
+        android:title="@string/txt_category"
+        android:icon="@drawable/ic_category" />
 
     <item android:id="@+id/placeholder"
         android:title="" />

@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pacifico"
-            android:text="HotelWallet"
+            android:text="@string/txt_splash"
             android:textColor="@color/colorWhite"
             android:textSize="40sp"
             android:layout_centerHorizontal="true"

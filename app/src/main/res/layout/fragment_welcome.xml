@@ -13,8 +13,9 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"
         app:tabBackground="@drawable/indicator_selector"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager"
         app:layout_constraintBottom_toTopOf="@+id/btn_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -23,8 +24,9 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="invisible"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/btn_arabe"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/tab_layout"
         tools:ignore="MissingConstraints" />
 
@@ -35,11 +37,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="@color/colorWhite"
+        android:visibility="invisible"
         android:background="@drawable/round_corner"
         android:text="@string/txt_skip"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Back"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -48,33 +50,34 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textColor="@color/colorWhite"
+        android:visibility="invisible"
         android:background="@drawable/round_corner"
         android:text="@string/txt_next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Next" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_english"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="English"
+        android:text="@string/txt_english"
         android:textColor="@color/colorWhite"
         app:backgroundTint="@color/colorAquamarineBlue_50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_arabe" />
 
     <Button
         android:id="@+id/btn_arabe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Arabe"
+        android:text="@string/txt_arabe"
+        android:layout_marginBottom="20dp"
         android:textColor="@color/colorWhite"
         app:backgroundTint="@color/colorAstronautBlue_50"
-        app:layout_constraintTop_toBottomOf="@+id/btn_english"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
